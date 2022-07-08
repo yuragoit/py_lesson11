@@ -117,7 +117,7 @@ class AddressBook(UserDict, Record):
     def get_phones(self, *name):
         for elem in name:
             if elem:
-                rez = self.data[elem]
+                rez = self.data[elem][-1]
                 print(f"For {elem} matched phones: {rez}")
 
     def iterator(self, N):
@@ -132,9 +132,8 @@ class AddressBook(UserDict, Record):
                 time.sleep(2)
 
 
-# Test working conditions for developed classes (pagination)
+# Test working conditions for developed classes with pagination
 a = AddressBook()
-# a.add_record("Alex", 1001)
 a.add_record("Bils", "20010130", 380665214700)
 a.add_phone("Bils", 380665214701)
 a.add_record("Corsa", "20020429", 380505214701, 380665214702, 380666666666)
@@ -149,6 +148,7 @@ a.add_record("Izya", None, 380665214709)
 a.add_record("John", None, 380665214710)
 a.add_record("Katrin", None, 380665214711, 38000)
 a.add_record("Levin", None, 380665214712, 380665214713)
+a.get_phones("Bils", "Corsa", "Katrin", "Fedor")
 a.iterator(3)
 print(a.days_to_birthday("Bils"))
 print(a.days_to_birthday("Corsa"))
